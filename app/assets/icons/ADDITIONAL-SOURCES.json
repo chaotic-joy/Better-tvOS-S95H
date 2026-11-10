@@ -16,5 +16,29 @@
     "source": "https://github.com/simple-icons/simple-icons/blob/develop/icons/tubi.svg",
     "licence": "CC0-1.0",
     "note": "Shape unchanged; white fill for launcher."
+  },
+  {
+    "icon": "plex",
+    "source": "https://cdn.jsdelivr.net/npm/simple-icons@13.16.0/icons/plex.svg",
+    "licence": "CC0-1.0",
+    "note": "Shape unchanged; white fill for launcher. Trademark of Plex, Inc."
+  },
+  {
+    "icon": "playstation",
+    "source": "https://cdn.jsdelivr.net/npm/simple-icons@13.16.0/icons/playstation.svg",
+    "licence": "CC0-1.0",
+    "note": "Shape unchanged; white fill. PS5 HDMI input tile. Trademark of Sony Interactive Entertainment."
+  },
+  {
+    "icon": "mac",
+    "source": "https://cdn.jsdelivr.net/npm/simple-icons@13.16.0/icons/apple.svg",
+    "licence": "CC0-1.0",
+    "note": "Apple mark, shape unchanged; white fill. Mac HDMI input tile. Trademark of Apple Inc."
+  },
+  {
+    "icon": "pc",
+    "source": "Better-tvOS-S95H original monitor glyph, 24px grid",
+    "licence": "MIT",
+    "note": "No brand logo; generic computer mark for the PC HDMI input."
   }
 ]

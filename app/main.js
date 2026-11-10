@@ -27,10 +27,10 @@
   // Better-tvOS-S95H: this TV's Home. Input tiles switch HDMI source instead of launching an app.
   // Plex uses its app ID as its tile ID so the installed-app catalogue merges into this record.
   var S95H_APPS = [
-    { id: 'kIciSQlYEM.plex', name: 'Plex', mark: false, fixed: true, appId: 'kIciSQlYEM.plex' },
-    { id: 'hdmi1', name: 'PS5', mark: false, fixed: true, input: 1, mono: 'PS' },
-    { id: 'hdmi2', name: 'PC', mark: false, fixed: true, input: 2, mono: 'PC' },
-    { id: 'hdmi3', name: 'Mac', mark: false, fixed: true, input: 3, mono: 'M' }
+    { id: 'kIciSQlYEM.plex', name: 'Plex', brand: 'plex', mark: true, fixed: true, appId: 'kIciSQlYEM.plex' },
+    { id: 'hdmi1', name: 'PS5', brand: 'playstation', mark: true, fixed: true, input: 1, mono: 'PS' },
+    { id: 'hdmi2', name: 'PC', brand: 'pc', mark: true, fixed: true, input: 2, mono: 'PC' },
+    { id: 'hdmi3', name: 'Mac', brand: 'mac', mark: true, fixed: true, input: 3, mono: 'M' }
   ];
   var S95H_HOME = ['youtube', 'kIciSQlYEM.plex', 'hdmi1', 'hdmi2', 'hdmi3'], FORK = 's95h';
   var PRIMARY = PRIMARY_APPS.map(function (a) { return a.id; }), APPS = PRIMARY_APPS.concat(S95H_APPS), ALPHA = [];
@@ -492,9 +492,12 @@
         if (!safeId(id) || !safeId(entry.appId) || ALPHA.indexOf(id) >= 0) return;
         a = app(id);
         if (!a) { a = { id: id }; APPS.push(a); }
-        a.appId = entry.appId; a.brand = entry.brand || ''; a.mark = !!entry.brand;
-        a.icon = safeIcon(entry.icon);
-        if (!a.fixed) a.name = PRIMARY.indexOf(id) >= 0 ? PRIMARY_APPS[PRIMARY.indexOf(id)].name : String(entry.name).slice(0, 160);
+        // Fixed S95H tiles keep their own mark/name; the installed-app catalogue must not restyle them.
+        if (!a.fixed) {
+          a.appId = entry.appId; a.brand = entry.brand || ''; a.mark = !!entry.brand;
+          a.icon = safeIcon(entry.icon);
+          a.name = PRIMARY.indexOf(id) >= 0 ? PRIMARY_APPS[PRIMARY.indexOf(id)].name : String(entry.name).slice(0, 160);
+        }
         ALPHA.push(id);
       });
       ALPHA.sort(function (a, b) { return app(a).name.toLowerCase().localeCompare(app(b).name.toLowerCase()); });
