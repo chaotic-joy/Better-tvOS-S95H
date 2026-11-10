@@ -1,3 +1,9 @@
+# Better-tvOS-S95H
+
+A fork of CleanFrame for a Samsung S95H 77" OLED. **Start with [docs/s95h.md](docs/s95h.md)**: what's possible on this TV, the ad settings to turn off, and the setup stages. Everything below is the upstream README.
+
+---
+
 # CleanFrame
 
 A quieter home screen for Samsung The Frame. Your apps, a photograph and the time, with an interface made for the TV remote.
