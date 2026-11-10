@@ -1,6 +1,10 @@
 # Better-tvOS-S95H
 
-A fork of CleanFrame for a Samsung S95H 77" OLED. **Start with [docs/s95h.md](docs/s95h.md)**: what's possible on this TV, the ad settings to turn off, and the setup stages. Everything below is the upstream README.
+A personal fork, for a Samsung S95H 77" OLED, of **[CleanFrame](https://github.com/nthnclrk/CleanFrame)** — created by **Nathan Clark ([@nthnclrk](https://github.com/nthnclrk))**, who wrote the launcher, the TV setup scripts and the documentation. All the original work and credit are theirs; this fork only adapts it to one specific TV (S95H-specific tiles, HDMI input shortcuts, and device notes). See [docs/s95h.md](docs/s95h.md) for what's changed and what's possible on this model.
+
+**Start here:** [docs/s95h.md](docs/s95h.md) — the S95H setup stages, the ad settings to turn off, and the device-specific findings.
+
+Everything below this line is the original CleanFrame README, reproduced unchanged. Its first-person "I" is Nathan Clark, the original author — not the maintainer of this fork.
 
 ---
 
