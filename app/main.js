@@ -28,7 +28,7 @@
   // Plex uses its app ID as its tile ID so the installed-app catalogue merges into this record.
   var S95H_APPS = [
     { id: 'kIciSQlYEM.plex', name: 'Plex', brand: 'plex', mark: true, fixed: true, appId: 'kIciSQlYEM.plex' },
-    { id: 'hdmi1', name: 'PS5', brand: 'playstation', mark: true, fixed: true, input: 1, mono: 'PS' },
+    { id: 'hdmi1', name: 'PS5', brand: 'playstation', mark: true, fixed: true, input: 4, mono: 'PS' }, // ponytail: id kept as hdmi1 so saved Home keeps the tile; PS5 is on HDMI 4
     { id: 'hdmi2', name: 'PC', brand: 'pc', mark: true, fixed: true, input: 2, mono: 'PC' },
     { id: 'hdmi3', name: 'Mac', brand: 'mac', mark: true, fixed: true, input: 3, mono: 'M' }
   ];

@@ -251,8 +251,9 @@ try {
     check('Switch is saved with the fork marker', (await stored()).fork === 's95h');
     await current.reload(); await ready();
     check('Marked save keeps its Home', same((await state()).dock, S95H));
+    await current.evaluate(() => { __tv.videoSources.disconnected.push({ type: 'HDMI', number: 4 }); });
     await act('home.app.hdmi1'); await current.waitForFunction(() => __tv.calls.some(c => c.id === 'org.tizen.tv-viewer'));
-    check('PS5 tile selects HDMI 1 before viewer handoff', await current.evaluate(() => __tv.calls[0].method === 'setSource' && __tv.calls[0].number === 1));
+    check('PS5 tile selects HDMI 4 before viewer handoff', await current.evaluate(() => __tv.calls[0].method === 'setSource' && __tv.calls[0].number === 4));
     await closePage();
     await page({ seed: baseline({ dock: ['netflix'] }) });
     check('Marked save with other apps is left alone', same((await state()).dock, ['netflix']));
