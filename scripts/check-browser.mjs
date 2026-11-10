@@ -24,7 +24,7 @@ const sourceFiles = ['app/main.js', 'app/device.js', 'app/index.html', 'app/styl
 const hashes = () => Object.fromEntries(sourceFiles.map(f => [f, createHash('sha256').update(readFileSync(root + f)).digest('hex')]));
 const report = { scope: 'Production UI in Chromium; mock public Tizen API only; no TV contacted.', sourceBefore: hashes(), checks: [], failures: [], pageErrors: [], expectedNetworkFailures: [] };
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-const baseline = (patch = {}) => ({ dock: PRIMARY.slice(), wallpaper: walls[0].id, mode: 'fixed', lastApp: 'netflix', theme: 'shore', ...patch });
+const baseline = (patch = {}) => ({ fork: 's95h', dock: PRIMARY.slice(), wallpaper: walls[0].id, mode: 'fixed', lastApp: 'netflix', theme: 'shore', ...patch });
 let preview, current, section = '';
 
 function check(name, pass, detail) {
@@ -243,6 +243,19 @@ try {
     check('Next completed edit writes stable home key', (await stored()).dock[0] === 'netflix');
     await current.reload(); await ready();
     check('Migrated preferences survive reload', (await state()).look.controls === 'text' && (await state()).dock[0] === 'netflix');
+  });
+  await run('S95H Home and input tiles', async () => {
+    const S95H = ['youtube', 'kIciSQlYEM.plex', 'hdmi1', 'hdmi2', 'hdmi3'];
+    await page({ seed: { dock: PRIMARY.slice(), wallpaper: walls[0].id, mode: 'fixed', theme: 'shore' } });
+    check('Pre-fork save switches once to the S95H Home', same((await state()).dock, S95H), (await state()).dock);
+    check('Switch is saved with the fork marker', (await stored()).fork === 's95h');
+    await current.reload(); await ready();
+    check('Marked save keeps its Home', same((await state()).dock, S95H));
+    await act('home.app.hdmi1'); await current.waitForFunction(() => __tv.calls.some(c => c.id === 'org.tizen.tv-viewer'));
+    check('PS5 tile selects HDMI 1 before viewer handoff', await current.evaluate(() => __tv.calls[0].method === 'setSource' && __tv.calls[0].number === 1));
+    await closePage();
+    await page({ seed: baseline({ dock: ['netflix'] }) });
+    check('Marked save with other apps is left alone', same((await state()).dock, ['netflix']));
   });
   await run('Invalid preferences and saved native pins', async () => {
     await page({ seed: '{broken', legacy: baseline({ dock: ['netflix'], lastApp: 'netflix' }) });
